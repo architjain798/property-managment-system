@@ -5,23 +5,30 @@ const Add = (props) => {
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
 
-  /* const onFormSubmit = (e) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
+    console.log("form submitted");
     let obj = {
       name,
       description,
       size,
     };
-    props.setProperty(obj);
-  }; */
+    let oldElem = props.property;
+    console.log(oldElem);
+    let newArr = [...oldElem, obj];
+    console.log(newArr);
+    props.setProperty(newArr);
+    setName("");
+    setDescription("");
+    setSize("");
+  };
 
   return (
-    <form /* onSubmit={onFormSubmit} */>
-      {props.property.map((elem) => {
-        console.log(elem);
-      })}
+    <form onSubmit={onFormSubmit}>
       <div className="mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label"></label>
+        <label htmlFor="exampleInputEmail1" className="form-label">
+          Name
+        </label>
         <input
           type="text"
           className="form-control"
@@ -54,7 +61,7 @@ const Add = (props) => {
           Size
         </label>
         <input
-          type="text"
+          type="number"
           className="form-control"
           id="exampleInputPassword1"
           value={size}
@@ -65,7 +72,7 @@ const Add = (props) => {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        Submit
+        Add
       </button>
     </form>
   );

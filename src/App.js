@@ -26,7 +26,7 @@ const App = () => {
             Property Managment
           </h1>
           <Routes>
-            <Route exact path="/" element={<Property />} />
+            <Route exact path="/" element={<Property property={property} />} />
             <Route
               exact
               path="/add"
