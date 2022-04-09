@@ -6,13 +6,15 @@ import Add from "./components/Add";
 const App = () => {
   const [property, setProperty] = useState([
     {
-      name: "archit",
-      description: "sadasdsadadasd",
+      name: "Property 1",
+      description:
+        "After querying property information (neighborhood, the number of rooms, price, etc.), home buyers will see listing results that match their search. On the search results page, property photos immediately attract their eyeballs.",
       size: 10,
     },
     {
-      name: "ritika",
-      description: "dwdwedq",
+      name: "Property 2",
+      description:
+        "So far in their journey, home shoppers have narrowed their choices based on data and pictures. But they still need to get a feel for what makes each home unique and interesting compared to other homes on the market",
       size: 11,
     },
   ]);
@@ -26,7 +28,13 @@ const App = () => {
             Property Managment
           </h1>
           <Routes>
-            <Route exact path="/" element={<Property property={property} />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <Property setProperty={setProperty} property={property} />
+              }
+            />
             <Route
               exact
               path="/add"

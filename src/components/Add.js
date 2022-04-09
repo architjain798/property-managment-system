@@ -7,16 +7,16 @@ const Add = (props) => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted");
+
     let obj = {
       name,
       description,
       size,
     };
     let oldElem = props.property;
-    console.log(oldElem);
+
     let newArr = [...oldElem, obj];
-    console.log(newArr);
+
     props.setProperty(newArr);
     setName("");
     setDescription("");
