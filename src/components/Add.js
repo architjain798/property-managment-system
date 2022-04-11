@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-const Add = (props) => {
+const Add = (_props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
 
     let obj = {
@@ -13,11 +14,17 @@ const Add = (props) => {
       description,
       size,
     };
-    let oldElem = props.property;
+    /* let oldElem = props.property;
 
     let newArr = [...oldElem, obj];
 
-    props.setProperty(newArr);
+    props.setProperty(newArr); */
+
+    let reponse = await axios.post(
+      "https://property-api-archit.herokuapp.com/api/property/add",
+      obj
+    );
+    //console.log(reponse);
     setName("");
     setDescription("");
     setSize("");

@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 
 const Property = (props) => {
   const deleteProperty = (index) => {
-    let newProperty = props.property.filter((_x, i) => index !== i);
-    props.setProperty(newProperty);
+    // console.log("delete index" + index);
+    /* let newProperty = props.property.filter((_x, i) => index !== i);
+    props.setProperty(newProperty); */
+
+    let reponse = axios.delete(
+      `https://property-api-archit.herokuapp.com/api/property/deleteproperty/${index}`
+    );
+    //console.log("delet ka resoponse" + reponse);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await axios.get(
+        "https://property-api-archit.herokuapp.com/api/property/getdata"
+      );
+      // console.log(response);
+      props.setProperty(response.data);
+    };
+    fetchData();
+  }, [props.property]);
 
   return (
     <>
@@ -19,7 +37,7 @@ const Property = (props) => {
                     <p className="card-text">{elem.description}</p>
                     <div
                       className="btn btn-primary"
-                      onClick={() => deleteProperty(index)}
+                      onClick={() => deleteProperty(elem._id)}
                     >
                       Delete
                     </div>
